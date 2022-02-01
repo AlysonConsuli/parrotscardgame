@@ -10,9 +10,11 @@ body{
 h1{
     color: #75B79E;
     font-size: 56px;
+}
+
+header{
     display: flex;
     justify-content: center;
-    align-items: center;
     margin-top: 40px;
     margin-bottom: 47px;
 }
@@ -31,11 +33,66 @@ h1{
 main{
     display: flex;
     gap: 34px;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 img{
     width: 100px;
     height: 100px;
     display: flex;
+}
+
+.fileira{
+    display: flex;
+    gap: 34px;
+}
+
+.escondido{
+    display: none;
+}
+
+.headerMobile{
+    display: none;
+}
+
+@media (max-width: 600px){
+
+    h1{
+        font-size: 36px;
+        line-height: 42px;
+        /*height: 63px;
+        width: 312px;
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;*/
+    }
+    
+    /*header{
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        margin-bottom: 47px;
+        background-color: blue;
+    }*/
+
+    .fileira{
+        flex-direction: column;
+    }
+
+    header{
+        display: none;
+    }
+
+    .headerMobile{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        margin-bottom: 25px;
+    }
+
 }
