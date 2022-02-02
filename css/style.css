@@ -14,9 +14,15 @@ h1{
 
 header{
     display: flex;
+    align-items: center;
     justify-content: center;
-    margin-top: 40px;
-    margin-bottom: 47px;
+    margin: 40px auto 47px auto;
+}
+
+.titulo{
+    height: 63px;
+    width: 541px;
+    background-color: blue;
 }
 
 .carta{
@@ -33,27 +39,25 @@ header{
 main{
     display: flex;
     gap: 34px;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 img{
     width: 100px;
     height: 100px;
-    display: flex;
-}
-
-.fileira{
-    display: flex;
-    gap: 34px;
 }
 
 .escondido{
     display: none;
 }
 
-.headerMobile{
+/*.teste{
+    background-color: red;
+}
+
+/*.headerMobile{
     display: none;
 }
 
@@ -62,27 +66,13 @@ img{
     h1{
         font-size: 36px;
         line-height: 42px;
-        /*height: 63px;
-        width: 312px;
-        background-color: red;
-        display: flex;
-        justify-content: center;
-        align-items: center;*/
     }
-    
-    /*header{
-        display: flex;
-        justify-content: center;
-        margin-top: 40px;
-        margin-bottom: 47px;
-        background-color: blue;
+
+    /*.fileira{
+        flex-direction: column;
     }*/
 
-    .fileira{
-        flex-direction: column;
-    }
-
-    header{
+    /*header{
         display: none;
     }
 
@@ -95,4 +85,4 @@ img{
         margin-bottom: 25px;
     }
 
-}
+}*/
