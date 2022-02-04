@@ -14,17 +14,12 @@ let verso
 let carta1
 let again
 let main
-//let cartas
-
-function comparador() {
-    return Math.random() - 0.5;
-}
+let bloquearVirarCarta = false
 
 function quantidade() {
     numeroCartas = parseInt(prompt('Quantas cartas você deseja? (números pares de 4 à 14)'))
     let possibilidades = [4, 6, 8, 10, 12, 14]
     let i = 0
-
     while (numeroCartas !== possibilidades[i]) {
         i++
         if (i === possibilidades.length) {
@@ -48,40 +43,50 @@ function quantidade() {
         </div>
     </div>`
     }
-
 }
 
 function virarCarta(cartaSelecionada) {
-    frente = cartaSelecionada.querySelector('.frontFace')
-    verso = cartaSelecionada.querySelector('.backFace')
-    frente.classList.add('mostrarFrente')
-    verso.classList.add('esconderVerso')
+    if (bloquearVirarCarta === false) {
+        frente = cartaSelecionada.querySelector('.frontFace')
+        verso = cartaSelecionada.querySelector('.backFace')
+        frente.classList.add('mostrarFrente')
+        verso.classList.add('esconderVerso')
 
-    cartasParaCima = document.querySelectorAll('.mostrarFrente')
-    let n = cartasParaCima.length
+        cartasParaCima = document.querySelectorAll('.mostrarFrente')
 
-    if (n % 2 === 1) {
-        imgSelecionada1 = cartaSelecionada.querySelector('img')
-        src1 = imgSelecionada1.getAttribute('src')
-        carta1 = cartaSelecionada
-        src2 = null
-    } else {
-        imgSelecionada2 = cartaSelecionada.querySelector('img')
-        src2 = imgSelecionada2.getAttribute('src')
+        if (cartasParaCima.length % 2 === 1) {
+            imgSelecionada1 = cartaSelecionada.querySelector('img')
+            src1 = imgSelecionada1.getAttribute('src')
+            carta1 = cartaSelecionada
+            src2 = null
+        } else {
+            imgSelecionada2 = cartaSelecionada.querySelector('img')
+            src2 = imgSelecionada2.getAttribute('src')
+        }
+        numeroDeJogadas += 1
+        if (numeroDeJogadas === 1) {
+            intervalo = setInterval(cronometro, 1000)
+        }
+
+        if (src1 === src2) {
+            contador += 2
+        } else if (src1 !== src2 && src2 !== null) {
+            bloquearVirarCarta = true
+            setTimeout(desvirar, 1000)
+        }
+
+        if (contador === numeroCartas) {
+            setTimeout(finalizarJogo, 500)
+        }
     }
-    numeroDeJogadas += 1
-    if (numeroDeJogadas === 1) {
-        intervalo = setInterval(cronometro, 1000)
-    }
+}
 
-    if (src1 === src2) {
-        contador += 2
-    } else if (src1 !== src2 && src2 !== null) {
-        setTimeout(desvirar, 1000)
-    }
+function comparador() {
+    return Math.random() - 0.5;
+}
 
-    setTimeout(finalizarJogo, 500)
-
+function cronometro() {
+    relogio.innerHTML = parseInt(relogio.innerHTML) + 1
 }
 
 function desvirar() {
@@ -91,21 +96,13 @@ function desvirar() {
     verso = carta1.querySelector('.backFace')
     frente.classList.remove('mostrarFrente')
     verso.classList.remove('esconderVerso')
+    bloquearVirarCarta = false
 }
 
 function finalizarJogo() {
-    if (contador === numeroCartas) {
-        alert(`Você ganhou em ${numeroDeJogadas} jogadas e em ${parseInt(relogio.innerHTML)} segundos!`)
-        jogarNovamente()
-    }
-}
-
-function cronometro() {
-    if (contador === numeroCartas) {
-        clearInterval(intervalo)
-    } else {
-        relogio.innerHTML = parseInt(relogio.innerHTML) + 1
-    }
+    alert(`Você ganhou em ${numeroDeJogadas} jogadas e em ${parseInt(relogio.innerHTML)} segundos!`)
+    clearInterval(intervalo)
+    jogarNovamente()
 }
 
 function jogarNovamente() {
@@ -120,18 +117,14 @@ function jogarNovamente() {
         numeroDeJogadas = 0
         contador = 0
         passaros = ['unicornparrot', 'unicornparrot', 'tripletsparrot', 'tripletsparrot', 'metalparrot', 'metalparrot', 'fiestaparrot', 'fiestaparrot', 'bobrossparrot', 'bobrossparrot', 'explodyparrot', 'explodyparrot', 'revertitparrot', 'revertitparrot']
+        intervalo = null
         imgSelecionada1 = null
         imgSelecionada2 = null
         src1 = null
         src2 = null
         quantidade()
-
     } else {
-        /*cartas = document.querySelectorAll('.carta')
-        for(let i = 0; i < cartas.length; i++){
-            let cadaCarta = cartas[i]
-            cadaCarta.prop("onclick", null).off("click")
-        }*/
+        bloquearVirarCarta = true
     }
 }
 
