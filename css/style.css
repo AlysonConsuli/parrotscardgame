@@ -14,7 +14,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 40px auto 47px auto;
+    margin: 40px auto 0px auto;
 }
 .titulo{
     height: 63px;
@@ -32,15 +32,12 @@ main{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin: 0 80px;
 }
 img{
     width: 100px;
     height: 100px;
 }
-.escondido{
-    display: none;
-}
-
 .face{
     width: 100%;
     height: 100%;
@@ -55,26 +52,24 @@ img{
     transition: transform .5s linear;
     transform-style: preserve-3d;
 }
-
 .frontFace {
     transform: rotateY(180deg);
 }
-
 .mostrarFrente {
     transform: rotateY(0deg);
  }
-
 .esconderVerso {
     transform: rotateY(-180deg);
 }
-
-.delay{
-    transition-delay: 1s;
+.relogio{
+    font-size: 27px;
+    color: #F31E00;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 40px;
+    margin-top: 13px;
+    margin-bottom: 23px;
 }
-
-
-
-
 
 @media (max-width: 426px){
     h1{
