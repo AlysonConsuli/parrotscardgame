@@ -46,37 +46,41 @@ function quantidade() {
 }
 
 function virarCarta(cartaSelecionada) {
+
     if (bloquearVirarCarta === false) {
         frente = cartaSelecionada.querySelector('.frontFace')
-        verso = cartaSelecionada.querySelector('.backFace')
-        frente.classList.add('mostrarFrente')
-        verso.classList.add('esconderVerso')
+        let jaSelecionada = frente.classList.contains('mostrarFrente')
 
-        cartasParaCima = document.querySelectorAll('.mostrarFrente')
+        if (jaSelecionada === false) {
+            frente.classList.add('mostrarFrente')
+            verso = cartaSelecionada.querySelector('.backFace')
+            verso.classList.add('esconderVerso')
 
-        if (cartasParaCima.length % 2 === 1) {
-            imgSelecionada1 = cartaSelecionada.querySelector('img')
-            src1 = imgSelecionada1.getAttribute('src')
-            carta1 = cartaSelecionada
-            src2 = null
-        } else {
-            imgSelecionada2 = cartaSelecionada.querySelector('img')
-            src2 = imgSelecionada2.getAttribute('src')
-        }
-        numeroDeJogadas += 1
-        if (numeroDeJogadas === 1) {
-            intervalo = setInterval(cronometro, 1000)
-        }
+            cartasParaCima = document.querySelectorAll('.mostrarFrente')
+            if (cartasParaCima.length % 2 === 1) {
+                imgSelecionada1 = cartaSelecionada.querySelector('img')
+                src1 = imgSelecionada1.getAttribute('src')
+                carta1 = cartaSelecionada
+                src2 = null
+            } else {
+                imgSelecionada2 = cartaSelecionada.querySelector('img')
+                src2 = imgSelecionada2.getAttribute('src')
+            }
+            numeroDeJogadas += 1
+            if (numeroDeJogadas === 1) {
+                intervalo = setInterval(cronometro, 1000)
+            }
 
-        if (src1 === src2) {
-            contador += 2
-        } else if (src1 !== src2 && src2 !== null) {
-            bloquearVirarCarta = true
-            setTimeout(desvirar, 1000)
-        }
+            if (src1 === src2) {
+                contador += 2
+            } else if (src1 !== src2 && src2 !== null) {
+                bloquearVirarCarta = true
+                setTimeout(desvirar, 1000)
+            }
 
-        if (contador === numeroCartas) {
-            setTimeout(finalizarJogo, 500)
+            if (contador === numeroCartas) {
+                setTimeout(finalizarJogo, 500)
+            }
         }
     }
 }
@@ -106,12 +110,12 @@ function finalizarJogo() {
 }
 
 function jogarNovamente() {
-    again = prompt('Quer jogar novamente? (s ou n)')
-    while (again !== 's' && again !== 'n') {
-        again = prompt('Quer jogar novamente? (s ou n)')
+    again = prompt('Quer jogar novamente? (sim ou nao)')
+    while (again !== 'sim' && again !== 'nao') {
+        again = prompt('Quer jogar novamente? (sim ou nao)')
     }
 
-    if (again === 's') {
+    if (again === 'sim') {
         main.innerHTML = ''
         relogio.innerHTML = 0
         numeroDeJogadas = 0
