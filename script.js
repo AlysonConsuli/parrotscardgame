@@ -8,12 +8,11 @@ let src2 = null
 let intervalo = null
 let contador = 0
 let numeroDeJogadas = 0
+let frente = null
+let verso = null
+let carta1 = null
 let relogio = document.querySelector('.relogio')
-let frente
-let verso
-let carta1
-let again
-let main
+let main = document.querySelector('main')
 let bloquearVirarCarta = false
 
 function quantidade() {
@@ -31,7 +30,6 @@ function quantidade() {
     passaros.splice(numeroCartas, (14 - numeroCartas));
     passaros.sort(comparador)
 
-    main = document.querySelector('main')
     for (let k = 0; k < numeroCartas; k++) {
         main.innerHTML += `
     <div class="carta" onclick="virarCarta(this)" data-identifier="card">    
@@ -46,7 +44,6 @@ function quantidade() {
 }
 
 function virarCarta(cartaSelecionada) {
-
     if (bloquearVirarCarta === false) {
         frente = cartaSelecionada.querySelector('.frontFace')
         let jaSelecionada = frente.classList.contains('mostrarFrente')
@@ -110,12 +107,12 @@ function finalizarJogo() {
 }
 
 function jogarNovamente() {
-    again = prompt('Quer jogar novamente? (sim ou nao)')
-    while (again !== 'sim' && again !== 'nao') {
-        again = prompt('Quer jogar novamente? (sim ou nao)')
+    let again = prompt('Quer jogar novamente? (sim ou não)')
+    while (again !== 'sim' && again !== 'Sim' && again !== 'não' && again !== 'nao' && again !== 'Não' && again !== 'Nao') {
+        again = prompt('Quer jogar novamente? (sim ou não)')
     }
 
-    if (again === 'sim') {
+    if (again === 'sim' || again === 'Sim') {
         main.innerHTML = ''
         relogio.innerHTML = 0
         numeroDeJogadas = 0
@@ -126,6 +123,7 @@ function jogarNovamente() {
         imgSelecionada2 = null
         src1 = null
         src2 = null
+        cartasParaCima = []
         quantidade()
     } else {
         bloquearVirarCarta = true
