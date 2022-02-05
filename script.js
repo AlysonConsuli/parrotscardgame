@@ -36,10 +36,10 @@ function quantidade() {
         main.innerHTML += `
     <div class="carta" onclick="virarCarta(this)" data-identifier="card">    
         <div class="face frontFace" data-identifier="front-face">
-        <img src="../img/${passaros[k]}.gif" alt="${passaros[k]}">
+        <img src="img/${passaros[k]}.gif" alt="${passaros[k]}">
         </div>
         <div class="face backFace" data-identifier="back-face">
-        <img src="../img/front.png" alt="passaro">
+        <img src="img/front.png" alt="passaro">
         </div>
     </div>`
     }
