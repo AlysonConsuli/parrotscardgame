@@ -11,18 +11,18 @@ let numeroDeJogadas = 0
 let frente = null
 let verso = null
 let carta1 = null
-let relogio = document.querySelector('.relogio')
-let main = document.querySelector('main')
+const relogio = document.querySelector('.relogio')
+const main = document.querySelector('main')
 let bloquearVirarCarta = false
 
 function quantidade() {
-    numeroCartas = parseInt(prompt('Quantas cartas você deseja? (números pares de 4 à 14)'))
+    numeroCartas = parseInt(prompt('Quantas cartas você deseja? (números pares de 4 a 14)'))
     let possibilidades = [4, 6, 8, 10, 12, 14]
     let i = 0
     while (numeroCartas !== possibilidades[i]) {
         i++
         if (i === possibilidades.length) {
-            numeroCartas = parseInt(prompt('Quantas cartas você deseja? (números pares de 4 à 14)'))
+            numeroCartas = parseInt(prompt('Quantas cartas você deseja? (números pares de 4 a 14)'))
             i = 0
         }
     }
